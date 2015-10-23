@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gamershots</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="starter-template.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Gamershots</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/filter">Filter</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Filter</h1>
+      </div>
+
+      <form action="/play" method="post">
+        <div class="form-group">
+        <label>Platforms</label>
+        <% @all_platforms.each do |platform| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value=<%= platform %> name="platforms[]">
+            <%= platform %>
+          </label>
+        </div>
+        <% end %>
+        </div>
+
+        <div class="form-group">
+        <label>Publishers</label>
+        <% @all_publishers.each do |publisher| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value=<%= publisher %> name="publishers[]">
+            <%= publisher %>
+          </label>
+        </div>
+        <% end %>
+        </div>
+
+        <label>Minimum Year</label>
+        <select class="form-control" name="minimumYear">
+          <option>---</option>
+          <% @years.each do |year| %>
+          <option><%= year %></option>
+          <% end %>
+        </select>
+
+        <label>Maximum Year</label>
+        <select class="form-control" name="maximumYear">
+          <option>---</option>
+          <% @years.each do |year| %>
+          <option><%= year %></option>
+          <% end %>
+        </select>
+
+        <button type="submit" class="btn btn-default">Play</button>
+      </form>
+
+    </div><!-- /.container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $( "#reveal" ).click(function() {
+          $( "#name" ).css('visibility','visible');
+        });
+      });
+    </script>
+  </body>
+</html>
