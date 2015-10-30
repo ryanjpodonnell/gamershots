@@ -57,6 +57,8 @@ LIMIT
   1000
   SQL
 
+  return erb :index if games.empty? && response.count == 0
+
   games = response.map { |game| game } if games.empty?
   @game = games.shuffle!.pop
 
