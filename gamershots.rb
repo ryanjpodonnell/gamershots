@@ -3,7 +3,7 @@ require 'sinatra'
 require 'pg'
 require 'yaml'
 
-connection = PG::Connection.open(:dbname => 'gamershots')
+connection = PG::Connection.open(:dbname => 'd688leu0983go6')
 platforms = ""
 publishers = ""
 minimum_year = ""
