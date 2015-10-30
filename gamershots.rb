@@ -3,7 +3,14 @@ require 'sinatra'
 require 'pg'
 require 'yaml'
 
-connection = PG::Connection.open(:dbname => 'd688leu0983go6')
+db = URI.parse(ENV['DATABASE_URL'])
+connection = PG::Connection.open(
+  :host => db.host,
+  :user => db.user,
+  :password => db.password,
+  :dbname => db.path[1..-1]
+)
+
 platforms = ""
 publishers = ""
 minimum_year = ""
