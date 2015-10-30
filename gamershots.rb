@@ -1,7 +1,7 @@
+require 'rubygems'
 require 'sinatra'
 require 'pg'
 require 'yaml'
-require 'debugger'
 
 connection = PG::Connection.open(:dbname => 'gamershots')
 platforms = ""
