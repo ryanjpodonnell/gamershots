@@ -40,14 +40,14 @@ post '/play' do
   end
 
   response = connection.exec(<<-SQL) if games.empty?
-SELECT 
+SELECT
   *
 FROM 
-  screenshots 
+  screenshots
 WHERE
-  original_release_date >= '01-01-#{minimum_year}' 
-AND 
-  original_release_date <= '12-31-#{maximum_year}' 
+  original_release_date >= DATE('01-01-#{minimum_year}')
+AND
+  original_release_date <= DATE('12-31-#{maximum_year}')
 #{platforms_query_string}
 #{publishers_query_string}
 #{user_review_query_string}
