@@ -34,8 +34,8 @@ post '/play' do
 
     minimum_year = "1935" if minimum_year == "---"
     maximum_year = "2015" if maximum_year == "---"
-    platforms_query_string = "AND platforms LIKE ANY (VALUES#{platforms.map { |value| "('%#{value.gsub('_', ' ')}%')" }.join(", ")})" if platforms
-    publishers_query_string = "AND publishers LIKE ANY (VALUES#{publishers.map { |value| "('%#{value.gsub('_', ' ')}%')" }.join(", ")})" if publishers
+    platforms_query_string = "AND platforms LIKE ANY (VALUES#{platforms.map { |value| "('%\"#{value.gsub('_', ' ')}\"%')" }.join(", ")})" if platforms
+    publishers_query_string = "AND publishers LIKE ANY (VALUES#{publishers.map { |value| "('%\"#{value.gsub('_', ' ')}\"%')" }.join(", ")})" if publishers
     user_review_query_string = "AND number_of_user_reviews != 0" if user_reviews
   end
 
