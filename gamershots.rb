@@ -51,6 +51,10 @@ AND
 #{platforms_query_string}
 #{publishers_query_string}
 #{user_review_query_string}
+ORDER BY
+  random()
+LIMIT
+  1000
   SQL
 
   games = response.map { |game| game } if games.empty?
