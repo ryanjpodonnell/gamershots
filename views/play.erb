@@ -9,8 +9,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="starter-template.css" rel="stylesheet">
   </head>
-  <body>
 
+  <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -31,24 +31,22 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container starter-template">
+      <p class="lead" id="name" style="visibility: hidden;"><%= @game["name"] %></p>
+      <p id="platforms" style="visibility: hidden;"><%= @game["platforms"] %></p>
+      <p id="originalReleaseDate" style="visibility: hidden;"><%= @game["original_release_date"] %></p>
+      <p id="developers" style="visibility: hidden;"><%= @game["developers"] %></p>
+      <p id="publishers" style="visibility: hidden;"><%= @game["publishers"] %></p>
+       
+      <img src="<%= @game["image_url"] %>" class="img-rounded">
 
-      <div class="starter-template">
-        <p class="lead" id="name" style="visibility: hidden;"><%= @game["name"] %></p>
-         
-        <img src="<%= @game["image_url"] %>" class="img-rounded">
-
-        <div>
-          <button class="btn btn-default" type="submit" id="reveal">Reveal</button>
-        </div>
-
-        <div>
-          <form class="starter-template" action="play" method="post">
-            <button type="submit" class="btn btn-default">Play</button>
-          </form>
-        </div>
+      <div>
+        <button class="btn btn-default" id="reveal">Reveal</button>
       </div>
 
+      <form class="form-inline" action="play" method="post">
+        <button type="submit" class="btn btn-default">Next</button>
+      </form>
     </div><!-- /.container -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -57,6 +55,10 @@
       $(document).ready(function(){
         $( "#reveal" ).click(function() {
           $( "#name" ).css('visibility','visible');
+          $( "#platforms" ).css('visibility','visible');
+          $( "#originalReleaseDate" ).css('visibility','visible');
+          $( "#developers" ).css('visibility','visible');
+          $( "#publishers" ).css('visibility','visible');
         });
       });
     </script>

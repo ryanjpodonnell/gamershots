@@ -39,46 +39,62 @@
 
       <form action="/play" method="post">
         <div class="form-group">
-        <label>Platforms</label>
-        <% @all_platforms.each do |platform| %>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value=<%= platform %> name="platforms[]">
-            <%= platform %>
-          </label>
-        </div>
-        <% end %>
+          <label>Platforms</label>
+          <% @all_platforms.each do |platform| %>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=<%= platform %> name="platforms[]">
+              <%= platform %>
+            </label>
+          </div>
+          <% end %>
         </div>
 
         <div class="form-group">
-        <label>Publishers</label>
-        <% @all_publishers.each do |publisher| %>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value=<%= publisher %> name="publishers[]">
-            <%= publisher %>
-          </label>
-        </div>
-        <% end %>
-        </div>
-
-        <label>Minimum Year</label>
-        <select class="form-control" name="minimumYear">
-          <option>---</option>
-          <% @years.each do |year| %>
-          <option><%= year %></option>
+          <label>Publishers</label>
+          <% @all_publishers.each do |publisher| %>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=<%= publisher %> name="publishers[]">
+              <%= publisher %>
+            </label>
+          </div>
           <% end %>
-        </select>
+        </div>
 
-        <label>Maximum Year</label>
-        <select class="form-control" name="maximumYear">
-          <option>---</option>
-          <% @years.each do |year| %>
-          <option><%= year %></option>
-          <% end %>
-        </select>
+        <div class="form-group">
+          <label>Minimum Year</label>
+          <select class="form-control" name="minimumYear">
+            <option>---</option>
+            <% @years.each do |year| %>
+            <option><%= year %></option>
+            <% end %>
+          </select>
+        </div>
 
-        <button type="submit" class="btn btn-default">Play</button>
+        <div class="form-group">
+          <label>Maximum Year</label>
+          <select class="form-control" name="maximumYear">
+            <option>---</option>
+            <% @years.each do |year| %>
+            <option><%= year %></option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>User Reviews</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="true" name="userReviews">
+              Has User Reviews
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Play</button>
+        </div>
       </form>
 
     </div><!-- /.container -->
