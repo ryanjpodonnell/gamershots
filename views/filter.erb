@@ -43,7 +43,7 @@
           <% @all_platforms.each do |platform| %>
           <div class="checkbox">
             <label>
-              <input type="checkbox" value=<%= platform %> name="platforms[]">
+              <input type="checkbox" value=<%= platform.gsub(' ', '_') %> name="platforms[]">
               <%= platform %>
             </label>
           </div>
@@ -55,7 +55,7 @@
           <% @all_publishers.each do |publisher| %>
           <div class="checkbox">
             <label>
-              <input type="checkbox" value=<%= publisher %> name="publishers[]">
+              <input type="checkbox" value=<%= publisher.gsub(' ', '_') %> name="publishers[]">
               <%= publisher %>
             </label>
           </div>
