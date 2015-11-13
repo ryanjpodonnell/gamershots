@@ -27,18 +27,18 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/filter">Filter</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
 
     <div class="container starter-template">
-      <p class="lead" id="name" style="visibility: hidden;"><%= @game["name"] %></p>
-      <p id="platforms" style="visibility: hidden;"><%= @game["platforms"] %></p>
-      <p id="originalReleaseDate" style="visibility: hidden;"><%= @game["original_release_date"] %></p>
-      <p id="developers" style="visibility: hidden;"><%= @game["developers"] %></p>
-      <p id="publishers" style="visibility: hidden;"><%= @game["publishers"] %></p>
+      <p class="lead" id="name" style="visibility: hidden;"><%= @screenshot.name %></p>
+      <p id="platforms" style="visibility: hidden;"><%= @screenshot.platforms %></p>
+      <p id="originalReleaseDate" style="visibility: hidden;"><%= @screenshot.original_release_date %></p>
+      <p id="developers" style="visibility: hidden;"><%= @screenshot.developers %></p>
+      <p id="publishers" style="visibility: hidden;"><%= @screenshot.publishers %></p>
        
-      <img src="<%= @game["image_url"] %>" class="img-rounded">
+      <img src="<%= @screenshot.image_url %>" class="img-rounded">
 
       <div>
         <button class="btn btn-default" id="reveal">Reveal</button>
@@ -47,7 +47,7 @@
       <form class="form-inline" action="play" method="post">
         <button type="submit" class="btn btn-default">Next</button>
       </form>
-    </div><!-- /.container -->
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
