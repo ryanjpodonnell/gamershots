@@ -40,35 +40,413 @@
       <form action="/play" method="post">
         <div class="form-group">
           <label>Platforms</label>
-          <% @all_platforms.each do |platform| %>
+
           <div class="checkbox">
             <label>
-              <input type="checkbox" value=<%= platform.gsub(' ', '_') %> name="platforms[]">
-              <%= platform %>
+              <input type="checkbox" value="amiga" name="platforms[]">
+              Amiga
             </label>
           </div>
-          <% end %>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Arcade" name="platforms[]">
+              Arcade
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Atari ST" name="platforms[]">
+              Atari ST
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Commodore 64" name="platforms[]">
+              Commodore 64
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Game Boy" name="platforms[]">
+              Game Boy
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Game Boy Advance" name="platforms[]">
+              Game Boy Advance
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Game Boy Color" name="platforms[]">
+              Game Boy Color
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Genesis" name="platforms[]">
+              Genesis
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Linux" name="platforms[]">
+              Linux
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Mac" name="platforms[]">
+              Mac
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Nintendo 64" name="platforms[]">
+              Nintendo 64
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Nintendo DS" name="platforms[]">
+              Nintendo DS
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Nintendo Entertainment System" name="platforms[]">
+              Nintendo Entertainment System
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="PC" name="platforms[]">
+              PC
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="PlayStation" name="platforms[]">
+              PlayStation
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="PlayStation 2" name="platforms[]">
+              PlayStation 2
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="PlayStation 3" name="platforms[]">
+              PlayStation 3
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="PlayStation 4" name="platforms[]">
+              PlayStation 4
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="PlayStation Network" name="platforms[]">
+              PlayStation Network
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="PlayStation Portable" name="platforms[]">
+              PlayStation Portable
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Super Nintendo Entertainment System" name="platforms[]">
+              Super Nintendo Entertainment System
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Wii" name="platforms[]">
+              Wii
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Wii Shop" name="platforms[]">
+              Wii Shop
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Wii U" name="platforms[]">
+              Wii U
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Xbox" name="platforms[]">
+              Xbox
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Xbox 360" name="platforms[]">
+              Xbox 360
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Xbox 360 Games Store" name="platforms[]">
+              Xbox 360 Games Store
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Xbox One" name="platforms[]">
+              Xbox One
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="iPhone" name="platforms[]">
+              iPhone
+            </label>
+          </div>
         </div>
 
         <div class="form-group">
           <label>Publishers</label>
-          <% @all_publishers.each do |publisher| %>
+
           <div class="checkbox">
             <label>
-              <input type="checkbox" value=<%= publisher.gsub(' ', '_') %> name="publishers[]">
-              <%= publisher %>
+              <input type="checkbox" value="Acclaim Entertainment, Inc." name="publishers[]">
+              Acclaim Entertainment, Inc.
             </label>
           </div>
-          <% end %>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Activision" name="publishers[]">
+              Activision
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Atari SA" name="publishers[]">
+              Atari SA
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Bandai Co., Ltd." name="publishers[]">
+              Bandai Co., Ltd.
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Bandai Namco Entertainment" name="publishers[]">
+              Bandai Namco Entertainment
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Capcom" name="publishers[]">
+              Capcom
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Codemasters" name="publishers[]">
+              Codemasters
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Electronic Arts" name="publishers[]">
+              Electronic Arts
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Hudson Entertainment, Inc." name="publishers[]">
+              Hudson Entertainment, Inc.
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Konami Corporation" name="publishers[]">
+              Konami Corporation
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Microsoft Studios" name="publishers[]">
+              Microsoft Studios
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Midway Games" name="publishers[]">
+              Midway Games
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Namco" name="publishers[]">
+              Namco
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Nintendo" name="publishers[]">
+              Nintendo
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Sega" name="publishers[]">
+              Sega
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Sierra" name="publishers[]">
+              Sierra
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Sony Computer Entertainment America" name="publishers[]">
+              Sony Computer Entertainment America
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Sony Computer Entertainment Incorporated" name="publishers[]">
+              Sony Computer Entertainment Incorporated
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Square Enix" name="publishers[]">
+              Square Enix
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="THQ" name="publishers[]">
+              THQ
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="Taito Corporation" name="publishers[]">
+              Taito Corporation
+            </label>
+          </div>
         </div>
 
         <div class="form-group">
           <label>Minimum Year</label>
           <select class="form-control" name="minimumYear">
             <option>---</option>
-            <% @years.each do |year| %>
-            <option><%= year %></option>
-            <% end %>
+            <option>1971</option>
+            <option>1972</option>
+            <option>1973</option>
+            <option>1974</option>
+            <option>1975</option>
+            <option>1976</option>
+            <option>1977</option>
+            <option>1978</option>
+            <option>1979</option>
+            <option>1980</option>
+            <option>1981</option>
+            <option>1982</option>
+            <option>1983</option>
+            <option>1984</option>
+            <option>1985</option>
+            <option>1986</option>
+            <option>1987</option>
+            <option>1988</option>
+            <option>1989</option>
+            <option>1990</option>
+            <option>1991</option>
+            <option>1992</option>
+            <option>1993</option>
+            <option>1994</option>
+            <option>1995</option>
+            <option>1996</option>
+            <option>1997</option>
+            <option>1998</option>
+            <option>1999</option>
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+          </select>
+        </div>
           </select>
         </div>
 
@@ -76,9 +454,51 @@
           <label>Maximum Year</label>
           <select class="form-control" name="maximumYear">
             <option>---</option>
-            <% @years.each do |year| %>
-            <option><%= year %></option>
-            <% end %>
+            <option>1971</option>
+            <option>1972</option>
+            <option>1973</option>
+            <option>1974</option>
+            <option>1975</option>
+            <option>1976</option>
+            <option>1977</option>
+            <option>1978</option>
+            <option>1979</option>
+            <option>1980</option>
+            <option>1981</option>
+            <option>1982</option>
+            <option>1983</option>
+            <option>1984</option>
+            <option>1985</option>
+            <option>1986</option>
+            <option>1987</option>
+            <option>1988</option>
+            <option>1989</option>
+            <option>1990</option>
+            <option>1991</option>
+            <option>1992</option>
+            <option>1993</option>
+            <option>1994</option>
+            <option>1995</option>
+            <option>1996</option>
+            <option>1997</option>
+            <option>1998</option>
+            <option>1999</option>
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
           </select>
         </div>
 

@@ -68,58 +68,5 @@ end
 get '/filter' do
   games = []
 
-  response = connection.exec(<<-SQL)
-SELECT
-  platforms
-FROM 
-  (SELECT
-    COUNT(*) AS count, platforms 
-  FROM
-    screenshots 
-  GROUP BY 
-    platforms) x
-WHERE
-  count > 1000; 
-  SQL
-
-  all_platforms = []
-  response.each do |result|
-    platforms = YAML::load(result["platforms"])
-    all_platforms += platforms if platforms
-  end
-  @all_platforms = all_platforms.sort.uniq
-
-  response = connection.exec(<<-SQL)
-SELECT
-  publishers
-FROM
-  (SELECT
-    COUNT(*) AS count, publishers
-  FROM
-    screenshots
-  GROUP BY
-    publishers) x 
-WHERE
-  count > 1000;
-  SQL
-
-  all_publishers = []
-  response.each do |result|
-    publishers = YAML::load(result["publishers"])
-    all_publishers += publishers if publishers
-  end
-  @all_publishers = all_publishers.sort.uniq
-
-  response = connection.exec(<<-SQL)
-SELECT
-  DISTINCT(EXTRACT(YEAR FROM original_release_date)) AS original_release_year
-FROM
-  screenshots
-ORDER BY
-  original_release_year;
-  SQL
-
-  @years = response.values.flatten
-
   erb :filter
 end
