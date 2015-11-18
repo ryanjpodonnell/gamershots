@@ -46,7 +46,7 @@ def _filter_screenshots
 end
 
 def _delete_unused_year_params
-  ["minumum_year", "maximum_year"].each do |field|
+  ["minimum_year", "maximum_year"].each do |field|
     settings.params.delete(field) if settings.params[field] == "---"
   end
 end
