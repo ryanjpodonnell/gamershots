@@ -1,4 +1,3 @@
 class Screenshot < ActiveRecord::Base
-  def initalize
-  end
+  self.primary_key = 'id'
 end
