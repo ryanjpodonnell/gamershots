@@ -14,9 +14,7 @@ ActiveRecord::Base.establish_connection(
   :encoding => 'utf8'
 )
 
-configure do
-  set :params, nil
-end
+set :params, nil
 
 get '/' do
   erb :index
