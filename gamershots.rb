@@ -5,7 +5,7 @@ require 'sinatra/activerecord'
 require 'sinatra/cookies'
 require_relative 'screenshot'
 
-#db = URI.parse(ENV['DATABASE_URL'])
+db = URI.parse(ENV['DATABASE_URL'])
 ActiveRecord::Base.establish_connection(
   :adapter  => 'postgresql',
   :host     => db.host,
@@ -22,6 +22,7 @@ get '/' do
 end
 
 post '/play' do
+  session.clear if params.present?
   params.each do |key, value|
     next if ["minimum_year", "maximum_year"].include?(key) && value == "---"
     session[key] = value
