@@ -64,7 +64,7 @@ def _build_method_chain
 end
 
 def _build_like_method(field)
-  selected_values = session[field].map{ |value| "%#{value}%" }
+  selected_values = session[field].map{ |value| "%\"#{value}\"%" }
   query = (["#{field} LIKE ?"] * selected_values.count).join(" OR ")
   [:where, query, *selected_values]
 end
