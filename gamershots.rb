@@ -39,12 +39,12 @@ get '/filter' do
   erb :filter
 end
 
-get '/richard' do
+get '/richard/:number_of_results' do
   content_type :json
 
-  screenshot = Screenshot.order("random()").first
+  screenshots = Screenshot.order("random()").limit(params["number_of_results"])
 
-  screenshot.to_json(:methods => :sonic)
+  screenshots.to_json(:methods => :sonic)
 end
 
 def _filter_screenshots
