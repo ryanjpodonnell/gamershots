@@ -3,6 +3,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
+require 'json'
 require_relative 'screenshot'
 
 db = URI.parse(ENV['DATABASE_URL'])
@@ -36,6 +37,14 @@ end
 
 get '/filter' do
   erb :filter
+end
+
+get '/richard' do
+  content_type :json
+
+  screenshot = Screenshot.order("random()").first
+
+  screenshot.to_json(:methods => :sonic)
 end
 
 def _filter_screenshots
