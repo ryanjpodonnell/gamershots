@@ -4,7 +4,7 @@ require 'csv'
 class Scraper
   def initialize
     @api_key = ""
-    @offset = 47110
+    @offset = 47892
     @database = CSV.open("screenshots.csv", "a", :headers => true)
   end
 

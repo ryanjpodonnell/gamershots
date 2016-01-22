@@ -5,34 +5,13 @@ require 'sinatra/activerecord'
 require 'sinatra/cookies'
 require 'json'
 require_relative 'screenshot'
-
-db = URI.parse(ENV['DATABASE_URL'])
-ActiveRecord::Base.establish_connection(
-  :adapter  => 'postgresql',
-  :host     => db.host,
-  :username => db.user,
-  :password => db.password,
-  :database => db.path[1..-1],
-  :encoding => 'utf8'
-)
+require_relative 'fake_screenshot'
 
 enable :sessions
 
+
 get '/' do
   erb :index
-end
-
-post '/play' do
-  session.clear if params.present?
-  params.each do |key, value|
-    next if ["minimum_year", "maximum_year"].include?(key) && value == "---"
-    session[key] = value
-  end
-
-  @screenshot = _filter_screenshots
-  return erb :index if @screenshot.nil?
-
-  erb :play
 end
 
 get '/filter' do
@@ -45,6 +24,42 @@ get '/richard/:number_of_results' do
   screenshots = Screenshot.order("random()").limit(params["number_of_results"])
 
   screenshots.to_json(:methods => :sonic)
+end
+
+post '/play' do
+  session.clear if params.present?
+  params.each do |key, value|
+    next if ["minimum_year", "maximum_year"].include?(key) && value == "---"
+    session[key] = value
+  end
+
+  begin
+    @screenshot = _filter_screenshots
+  rescue ActiveRecord::ConnectionNotEstablished
+    @screenshot = FakeScreenshot.new
+  end
+
+  return erb :index if @screenshot.nil?
+
+  erb :play
+end
+
+
+def _connect_to_database
+  begin
+    db = URI.parse(ENV['DATABASE_URL'])
+  rescue URI::InvalidURIError
+    return
+  end
+
+  ActiveRecord::Base.establish_connection(
+    :adapter  => 'postgresql',
+    :host     => db.host,
+    :username => db.user,
+    :password => db.password,
+    :database => db.path[1..-1],
+    :encoding => 'utf8'
+  )
 end
 
 def _filter_screenshots
@@ -82,3 +97,6 @@ def _build_equality_method(operator, field, value)
   query = "#{field} #{operator} ?"
   [:where, query, value]
 end
+
+
+_connect_to_database
