@@ -6,6 +6,7 @@ require 'sinatra/cookies'
 require 'json'
 require_relative 'screenshot'
 require_relative 'fake_screenshot'
+require_relative 'player'
 
 enable :sessions
 
@@ -28,6 +29,14 @@ end
 
 post '/play' do
   session.clear if params.present?
+
+  number_of_players = params["number_of_players"].to_i
+  players = {}
+  1.upto(number_of_players) do |player_number|
+    players[player_number.to_s] = Player.new(player_number)
+  end
+  session["players"] = players
+
   params.each do |key, value|
     next if ["minimum_year", "maximum_year"].include?(key) && value == "---"
     session[key] = value
