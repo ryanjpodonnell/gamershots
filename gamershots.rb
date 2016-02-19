@@ -1,12 +1,15 @@
+require 'byebug'
+require 'json'
 require 'pg'
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
-require 'json'
-require_relative 'screenshot'
 require_relative 'fake_screenshot'
 require_relative 'player'
+require_relative 'screenshot'
+require_relative 'screenshot_filterer'
+include ScreenshotFilterer
 
 enable :sessions
 
@@ -28,19 +31,17 @@ get '/richard/:number_of_results' do
 end
 
 post '/play' do
-  session.clear if params.present?
+  if params.present?
+    session.clear
 
-  number_of_players = params["number_of_players"].to_i
-  players = {}
-  1.upto(number_of_players) do |player_number|
-    players[player_number.to_s] = Player.new(player_number)
+    players = _setup_players(params)
+    params.each do |key, value|
+      next if ["minimum_year", "maximum_year"].include?(key) && value == "---"
+      session[key] = value
+    end
   end
-  session["players"] = players
 
-  params.each do |key, value|
-    next if ["minimum_year", "maximum_year"].include?(key) && value == "---"
-    session[key] = value
-  end
+  @current_player_number = session["current_player"].player_number
 
   begin
     @screenshot = _filter_screenshots
@@ -51,6 +52,28 @@ post '/play' do
   return erb :index if @screenshot.nil?
 
   erb :play
+end
+
+post '/guess' do
+  guess = params[:guess]
+  game_title = params[:gameTitle]
+  current_player = session["current_player"]
+
+  if guess.downcase == game_title.downcase
+    current_player.score += 1
+  end
+  result = "<p>SCORE #{current_player.score}</p>"
+
+  next_player_number = current_player.player_number + 1
+  if next_player_number > 4
+    next_player_number = 1
+  end
+
+  session["current_player"] = session["players"].find do |player|
+    player.player_number == next_player_number
+  end
+
+  result
 end
 
 
@@ -71,40 +94,16 @@ def _connect_to_database
   )
 end
 
-def _filter_screenshots
-  methods = _build_method_chain
+def _setup_players(params)
+  players = []
+  number_of_players = params["number_of_players"].to_i
 
-  methods.inject(Screenshot) { |obj, method| obj.send(*method) }
-    .order("random()")
-    .first
-end
+  1.upto(number_of_players) do |player_number|
+    players << Player.new(player_number)
+  end
 
-def _build_method_chain
-  session.keys.map do |field|
-    case field
-    when "platforms", "publishers"
-      _build_like_method(field)
-    when "minimum_year"
-      minimum_date = "01-01-#{session[field]}"
-      _build_equality_method(">=", "original_release_date", minimum_date)
-    when "maximum_year"
-      maximum_date = "12-31-#{session[field]}"
-      _build_equality_method("<=", "original_release_date", maximum_date)
-    when "number_of_user_reviews"
-      _build_equality_method(">=", field, "1")
-    end
-  end.compact
-end
-
-def _build_like_method(field)
-  selected_values = session[field].map{ |value| "%\"#{value}\"%" }
-  query = (["#{field} LIKE ?"] * selected_values.count).join(" OR ")
-  [:where, query, *selected_values]
-end
-
-def _build_equality_method(operator, field, value)
-  query = "#{field} #{operator} ?"
-  [:where, query, value]
+  session["current_player"] = players.first
+  session["players"] = players
 end
 
 
