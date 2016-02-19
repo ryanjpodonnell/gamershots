@@ -65,7 +65,7 @@ post '/guess' do
   result = "<p>SCORE #{current_player.score}</p>"
 
   next_player_number = current_player.player_number + 1
-  if next_player_number > 4
+  if next_player_number > session["number_of_players"].to_i
     next_player_number = 1
   end
 
