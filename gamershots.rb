@@ -21,7 +21,7 @@ get '/filter' do
   erb :filter
 end
 
-get '/richard/:number_of_results' do
+get '/sonic/:number_of_results' do
   content_type :json
 
   screenshots = Screenshot.order("random()").limit(params["number_of_results"])
