@@ -6,7 +6,6 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
 require_relative 'fake_screenshot'
-require_relative 'player'
 require_relative 'screenshot'
 require_relative 'screenshot_filterer'
 include ScreenshotFilterer
@@ -34,14 +33,11 @@ post '/play' do
   if params.present?
     session.clear
 
-    players = _setup_players(params)
     params.each do |key, value|
       next if ["minimum_year", "maximum_year"].include?(key) && value == "---"
       session[key] = value
     end
   end
-
-  @current_player_number = session["current_player"].player_number
 
   begin
     @screenshot = _filter_screenshots
@@ -53,29 +49,6 @@ post '/play' do
 
   erb :play
 end
-
-post '/guess' do
-  guess = params[:guess]
-  game_title = params[:gameTitle]
-  current_player = session["current_player"]
-
-  if guess.downcase == game_title.downcase
-    current_player.score += 1
-  end
-  result = "<p>SCORE #{current_player.score}</p>"
-
-  next_player_number = current_player.player_number + 1
-  if next_player_number > session["number_of_players"].to_i
-    next_player_number = 1
-  end
-
-  session["current_player"] = session["players"].find do |player|
-    player.player_number == next_player_number
-  end
-
-  result
-end
-
 
 def _connect_to_database
   begin
@@ -93,18 +66,5 @@ def _connect_to_database
     :encoding => 'utf8'
   )
 end
-
-def _setup_players(params)
-  players = []
-  number_of_players = params["number_of_players"].to_i
-
-  1.upto(number_of_players) do |player_number|
-    players << Player.new(player_number)
-  end
-
-  session["current_player"] = players.first
-  session["players"] = players
-end
-
 
 _connect_to_database

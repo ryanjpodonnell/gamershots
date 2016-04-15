@@ -37,18 +37,8 @@
 
         <img src="<%= @screenshot.image_url %>" class="img-rounded" style="width: 100%">
 
-        <p>
-          <form class="form-inline" action="/test">
-            <div class="form-group">
-              <label for="game-input">Player <%= @current_player_number %> What Game Is This?</label>
-              <input type="text" class="form-control" id="game-input" name="guess" placeholder="Sonic CD">
-            </div>
-            <button type="submit" class="btn btn-default" id="game-button">Submit</button>
-          </form>
-        </p>
-
-        <div id="result"></div>
-        <form action="/play" method="post">
+        <form class="form-horizontal" action="play" method="post">
+          <button class="btn btn-default" id="reveal">Reveal</button>
           <button type="submit" class="btn btn-default">Next</button>
         </form>
 
@@ -70,17 +60,9 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function(){
-        $("#game-button").click(function(event) {
+        $("#reveal").click(function(event) {
           event.preventDefault();
-          var gameTitle = $("#game-title").text();
-          var guess = $("#game-input").val();
-
-          $(document).ready(function() {
-            $.post("guess", { gameTitle: gameTitle, guess: guess },
-              function(result) { $("#result").html(result); });
-            });
           $("#game-information").css('visibility','visible');
-          $("#game-button").attr('disabled','disabled');
         });
       });
     </script>
