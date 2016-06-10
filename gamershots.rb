@@ -5,6 +5,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
+require 'sinatra/namespace'
 require_relative 'fake_screenshot'
 require_relative 'screenshot'
 require_relative 'screenshot_filterer'
@@ -12,6 +13,23 @@ include ScreenshotFilterer
 
 enable :sessions
 
+namespace '/api' do
+  get '/sonic' do
+    content_type :json
+
+    screenshots = Screenshot.order("random()").limit(100)
+
+    screenshots.to_json(:methods => :sonic)
+  end
+
+  get '/screenshot' do
+    content_type :json
+
+    _get_screenshot
+
+    @screenshot.to_json
+  end
+end
 
 get '/' do
   erb :index
@@ -21,15 +39,15 @@ get '/filter' do
   erb :filter
 end
 
-get '/sonic/:number_of_results' do
-  content_type :json
+get '/screenshot' do
+  _get_screenshot
 
-  screenshots = Screenshot.order("random()").limit(params["number_of_results"])
+  return erb :index if @screenshot.nil?
 
-  screenshots.to_json(:methods => :sonic)
+  erb :screenshot
 end
 
-get '/screenshot' do
+def _get_screenshot
   if params.present?
     session.clear
 
@@ -44,10 +62,6 @@ get '/screenshot' do
   rescue ActiveRecord::ConnectionNotEstablished
     @screenshot = FakeScreenshot.new
   end
-
-  return erb :index if @screenshot.nil?
-
-  erb :screenshot
 end
 
 def _connect_to_database
