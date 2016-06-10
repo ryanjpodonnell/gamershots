@@ -29,7 +29,7 @@ get '/sonic/:number_of_results' do
   screenshots.to_json(:methods => :sonic)
 end
 
-post '/play' do
+get '/screenshot' do
   if params.present?
     session.clear
 
@@ -47,7 +47,7 @@ post '/play' do
 
   return erb :index if @screenshot.nil?
 
-  erb :play
+  erb :screenshot
 end
 
 def _connect_to_database
