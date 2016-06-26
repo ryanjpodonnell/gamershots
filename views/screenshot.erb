@@ -35,12 +35,14 @@
       <div class="starter-template">
         <br/>
 
-        <img src="<%= @screenshot.image_url %>" class="img-rounded" style="width: 100%">
-
         <form class="form-horizontal" action="screenshot" method="get">
           <button class="btn btn-default" id="reveal">Reveal</button>
           <button type="submit" class="btn btn-default">Next</button>
         </form>
+
+        <br/>
+
+        <img src="<%= @screenshot.image_url %>" class="img-rounded" style="width: 100%">
 
         <div id="game-information" class="panel panel-default" style="visibility: hidden;">
           <div class="panel-heading">
